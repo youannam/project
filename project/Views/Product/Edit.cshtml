@@ -1,0 +1,94 @@
+﻿@using project.ViewModel
+@model ProductVM
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mt-4">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <label asp-for="Quantity" class="form-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <label asp-for="price" class="form-label"></label>
+                <input asp-for="price" class="form-control" />
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <label asp-for="ImageUrl" class="form-label"></label>
+                <input asp-for="ImageUrl" type="file" class="form-control" id="ImageUpload" accept=".jpg,.jpeg,.png" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-text">
+                <span class="d-block">Image must be less than 2MB</span>
+                <span>Allowed Extensions: jpg , jpeg , png</span>
+            </div>
+
+            <div class="form-group mt-4">
+                <label asp-for="Category" class="form-label"></label>
+                <select asp-items="ViewBag._Categories" asp-for="CategoryId" class="form-control">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter product description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-5">
+                <input type="submit" value="Edit Product" class="btn btn-success" />
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Back</a>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <h5>Image Preview</h5>
+            <img id="ImagePreview" src="@Model.ImagePath" alt="No Image Selected" class="img-fluid mt-3" />
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+             document.getElementById("ImageUpload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const preview = document.getElementById("ImagePreview");
+                preview.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById("ImagePreview").classList.add("d-none");
+            }
+        });
+    </script>
+}

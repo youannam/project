@@ -1,0 +1,54 @@
+﻿@using project.ViewModel
+@model UserDetailsVM
+
+@* <div class="container">
+    <h2>User Details</h2>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+            <p class="card-text">
+                <strong>Username:</strong> @Model.UserName <br />
+                <strong>Email:</strong> @Model.Email
+            </p>
+        </div>
+    </div>
+</div> *@
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>User Details</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <img src="~/Images/User.jpg" class="rounded-circle mb-3" alt="User Avatar">
+                        <h4 class="card-title">@Model.FirstName @Model.LastName</h4>
+                        <p class="text-muted">@Model.UserName</p>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>FirstName:</strong> <span class="float-right">@Model.FirstName</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>LastName:</strong> <span class="float-right">@Model.LastName</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Username:</strong> <span class="float-right">@Model.UserName</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email:</strong> <span class="float-right">@Model.Email</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <a href="@Url.Action("Edit", "User", new { id = @Model.Id })" class="btn btn-outline-primary">Edit Profile</a>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

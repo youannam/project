@@ -1,0 +1,102 @@
+﻿@using project.ViewModel
+@model UserRegister
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="FirstName" class="form-control" placeholder="FirstName" />
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mt-3">
+                <input asp-for="LastName" class="form-control" placeholder="LastName" />
+                <label asp-for="LastName" class="control-label"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mt-3">
+                <input asp-for="UserName" class="form-control" placeholder="UserName" />
+                <label asp-for="UserName" class="control-label"></label>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mt-3">
+                <input asp-for="Email" class="form-control" placeholder="name@example.com" />
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3 position-relative">
+                <div class="input-group">
+                    <input type="password" asp-for="Password" class="form-control" id="passwordInput" placeholder="Enter password" />
+                    <span class="input-group-text">
+                        <i id="togglePassword" class="bi bi-eye" style="cursor: pointer;"></i>
+                    </span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3 position-relative">
+                <div class="input-group">
+                    <input type="password" asp-for="ConfirmPassword" class="form-control" id="confirmPasswordInput" placeholder="Confirm password" />
+                    <span class="input-group-text">
+                        <i id="toggleConfirmPassword" class="bi bi-eye" style="cursor: pointer;"></i>
+                    </span>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Register" class="w-100 btn btn-lg btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Toggle Password Visibility for Password field
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = document.getElementById('togglePassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+
+        // Toggle Password Visibility for Confirm Password field
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+            const icon = document.getElementById('toggleConfirmPassword');
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                confirmPasswordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    </script>
+}
+
+
+
+
+
